@@ -1,0 +1,92 @@
+.gantt-view-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 100%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.gantt-view-table thead tr {
+  background-color: #009879;
+  color: #ffffff;
+}
+.gantt-view-table thead th {
+  text-align: center;
+}
+.gantt-view-table thead th:first-child {
+  text-align: left;
+}
+
+.gantt-view-table th,
+.gantt-view-table td {
+    padding: 12px 15px;
+}
+
+.gantt-view-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+.gantt-view-table tbody td {
+  border-right: 1px solid #dddddd;
+}
+.gantt-view-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.gantt-view-table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.gantt-view-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+.gantt-view-table td{
+  white-space: nowrap;
+  text-align: left;
+}
+
+.gantt-view-table .progress-track, .gantt-view-table .progress-bar{
+  position:absolute;
+  top:20%;
+  height:60%;
+}
+.gantt-view-table .progress-track{
+  background-color: grey;
+}
+.gantt-view-table .progress-bar{
+  background-color: #38c4a8;
+}
+
+.gantt-view-table td:has(.progress-bar),
+.gantt-view-table td:has(.milestone_ends),
+.gantt-view-table td:has(.currentdate){
+  position:relative;
+  padding:0;
+}
+
+.gantt-view-table .milestone_ends{
+  top:50%;
+  transform:translate(-40%, -50%) rotate(45deg);
+  width:15px;
+  height:15px;
+  position:absolute;
+  background-color:black;
+}
+
+.gantt-view-table .milestone_bar{
+  top: 50%;
+  transform:translatey(-50%);
+  height:5px;
+  position:absolute;
+  background-color:black;
+}
+
+.gantt-view-table .currentdate{
+  position:absolute;
+  top:0px;
+  height:100%;
+  width:2px;
+  background-color:rgb(162, 7, 7);
+}

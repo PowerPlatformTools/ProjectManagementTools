@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="GanttStartDate_Key" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="GanttStartDate_Desc_Key" xml:space="preserve">
+    <value>The start date of the view</value>
+  </data>
+  <data name="GanttEndDate_Key" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="GanttEndDate_Desc_Key" xml:space="preserve">
+    <value>The end date of the view</value>
+  </data>
+  <data name="CurrentDate_Key" xml:space="preserve">
+    <value>Current Date</value>
+  </data>
+  <data name="CurrentDate_Desc_Key" xml:space="preserve">
+    <value>Shows a red line for the provided date</value>
+  </data>
+    <data name="ExpandDetails_Key" xml:space="preserve">
+    <value>Expand Details</value>
+  </data>
+  <data name="ExpandDetails_Desc_Key" xml:space="preserve">
+    <value>Show all columns or just the name column</value>
+  </data>
+
+  <data name="Id_Key" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Id_Desc_Key" xml:space="preserve">
+    <value>A unique identifier for the row</value>
+  </data>
+  <data name="Name_Key" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Name_Desc_Key" xml:space="preserve">
+    <value>The name of the row</value>
+  </data>
+    <data name="Assigned_Key" xml:space="preserve">
+    <value>Assigned</value>
+  </data>
+  <data name="Assigned_Desc_Key" xml:space="preserve">
+    <value>The Name of the assigned individual or team</value>
+  </data>
+  </data>
+    <data name="StartDate_Key" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="StartDate_Desc_Key" xml:space="preserve">
+    <value>The start date of the task in UTC text format</value>
+  </data>
+  </data>
+    <data name="EndDate_Key" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="EndDate_Desc_Key" xml:space="preserve">
+    <value>The end date of the task in UTC text format</value>
+  </data>
+  </data>
+    <data name="RowType_Key" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="RowType_Desc_Key" xml:space="preserve">
+    <value>Row Type of type 'task' or 'milestone'</value>
+  </data>
+  </data>
+    <data name="Progress_Key" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="Progress_Desc_Key" xml:space="preserve">
+    <value>the progress of the task with avalue between 0 and 100</value>
+  </data>
+  </data>
+    <data name="ParentID_Key" xml:space="preserve">
+    <value>ParentID</value>
+  </data>
+  <data name="ParentID_Desc_Key" xml:space="preserve">
+    <value>For hierarchical tasks and assigning milestones assign through the parent id</value>
+  </data>
+</root>

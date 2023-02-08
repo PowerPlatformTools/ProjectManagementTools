@@ -1,0 +1,87 @@
+/*
+ * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+var pcf_tools_652ac3f36e1e4bca82eb3c1dc44e6fad;
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./GanttView/GanttViewControl.tsx":
+/*!****************************************!*\
+  !*** ./GanttView/GanttViewControl.tsx ***!
+  \****************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+eval("\n\nvar __extends = this && this.__extends || function () {\n  var _extendStatics = function extendStatics(d, b) {\n    _extendStatics = Object.setPrototypeOf || {\n      __proto__: []\n    } instanceof Array && function (d, b) {\n      d.__proto__ = b;\n    } || function (d, b) {\n      for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p];\n    };\n    return _extendStatics(d, b);\n  };\n  return function (d, b) {\n    if (typeof b !== \"function\" && b !== null) throw new TypeError(\"Class extends value \" + String(b) + \" is not a constructor or null\");\n    _extendStatics(d, b);\n    function __() {\n      this.constructor = d;\n    }\n    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\n  };\n}();\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nexports.GanttViewControl = void 0;\nvar React = __webpack_require__(/*! react */ \"react\");\n/*\ntype GanttViewControlState = {\n  n: number;\n}\n*/\n//type DataRecord = ComponentFramework.PropertyHelper.DataSetApi.EntityRecord\n//type DataColumn = ComponentFramework.PropertyHelper.DataSetApi.Column\nvar COLUMN_DAYS = 7;\nvar DAY_TIME_RATIO = 1 / 1000 / 60 / 60 / 24;\nvar TIME_COLUMN_RATIO = DAY_TIME_RATIO / COLUMN_DAYS;\nvar COLUMN_WIDTH = 30;\nvar GanttViewControl = /** @class */function (_super) {\n  __extends(GanttViewControl, _super);\n  /*\n  initiateState(): GanttViewControlState {return ({n: 0})};\n  state: GanttViewControlState = this.initiateState();\n  */\n  function GanttViewControl(props) {\n    var _this = _super.call(this, props) || this;\n    /**\n     * Takes the parameters and orders by parent child it and adds a level\n     * @returns an ordered list of gantt rows\n     */\n    _this.orderGanttRows = function () {\n      var stack = [];\n      var result = [];\n      _this.props.data.filter(function (row) {\n        return row.name != \"val\" && row.parentId == \"\";\n      }).reverse().forEach(function (row) {\n        row.level = 0;\n        stack.push(row);\n      });\n      while (stack.length > 0) {\n        var currentRow = stack.pop();\n        result.push(currentRow);\n        _this.props.data.filter(function (row) {\n          return row.name != \"val\" && row.parentId == currentRow.id;\n        }).reverse().forEach(function (row) {\n          if (row.rowType == \"milestone\") {\n            currentRow.milestones.push(row);\n          } else {\n            row.level = currentRow.level + 1;\n            stack.push(row);\n          }\n        });\n      }\n      return result;\n    };\n    _this.calculateNewGanttEndDate = function () {\n      var weeks = Math.ceil((Number(_this.props.ganttEndDate) - Number(_this.props.ganttStartDate)) * TIME_COLUMN_RATIO);\n      return new Date(Number(_this.props.ganttStartDate) + weeks / TIME_COLUMN_RATIO);\n    };\n    _this.calculateStartX = function (date) {\n      var newGanttEndDate = _this.calculateNewGanttEndDate();\n      if (!date || date > newGanttEndDate) {\n        return -1;\n      }\n      if (date <= _this.props.ganttStartDate) {\n        return 0;\n      }\n      return Math.ceil((Number(date) - Number(_this.props.ganttStartDate)) * TIME_COLUMN_RATIO * COLUMN_WIDTH);\n    };\n    _this.calculateEndWidth = function (startDate, endDate) {\n      var newGanttEndDate = _this.calculateNewGanttEndDate();\n      console.log('startDate', startDate, newGanttEndDate, !startDate || startDate > newGanttEndDate);\n      console.log('endDate', endDate, _this.props.ganttStartDate, !endDate || endDate < _this.props.ganttStartDate);\n      if (!startDate || !endDate || startDate > newGanttEndDate || endDate < _this.props.ganttStartDate) {\n        console.log('no start');\n        return -1;\n      }\n      if (startDate < _this.props.ganttStartDate) {\n        startDate = _this.props.ganttStartDate;\n      }\n      if (endDate > newGanttEndDate) {\n        endDate = newGanttEndDate;\n      }\n      return Math.ceil((Number(endDate) - Number(startDate)) * TIME_COLUMN_RATIO * COLUMN_WIDTH);\n      //return 10;\n    };\n    /**\n     * Creates the Gantt Table element.\n     * @returns teh table elements with the gantt table in it.\n     */\n    _this.GanttTable = function () {\n      var noColumns = Math.ceil((Number(_this.props.ganttEndDate) - Number(_this.props.ganttStartDate)) * TIME_COLUMN_RATIO);\n      var dateArray = Array.from(Array(noColumns).keys());\n      var currentDateX = _this.props.currentDate <= _this.props.ganttStartDate || _this.props.currentDate > _this.props.ganttEndDate ? -1 : _this.calculateStartX(_this.props.currentDate); //Math.ceil((Number(this.props.currentDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);\n      return React.createElement(\"table\", {\n        className: \"gantt-view-table\"\n      }, React.createElement(\"thead\", null, React.createElement(\"tr\", null, _this.props.expandDetails && React.createElement(\"th\", null, \"ID\"), React.createElement(\"th\", {\n        style: {\n          width: \"200px\"\n        }\n      }, \"Name\"), _this.props.expandDetails && React.createElement(\"th\", null, \"Assinged\"), _this.props.expandDetails && React.createElement(\"th\", null, \"Start Date\"), _this.props.expandDetails && React.createElement(\"th\", null, \"End Date\"), dateArray.map(function (count, i) {\n        return React.createElement(\"th\", {\n          key: i,\n          style: {\n            width: COLUMN_WIDTH + \"px\",\n            padding: \"0px\"\n          }\n        }, i + 1);\n      }))), React.createElement(\"tbody\", null, _this.orderGanttRows().map(function (row, i) {\n        console.log('id', row.id);\n        var rowLeftX = _this.calculateStartX(row.startDate); //Math.ceil((Number(row.startDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);\n        var rowWidth = _this.calculateEndWidth(row.startDate, row.endDate); //Math.ceil((Number(row.endDate) - Number(row.startDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);\n        var rowProgressWidth = rowWidth * row.progress / 100;\n        console.log('rowLeftX', row.id, row.startDate, rowLeftX, rowWidth, currentDateX != -1 && rowWidth != -1);\n        return React.createElement(\"tr\", {\n          key: i\n        }, _this.props.expandDetails && React.createElement(\"td\", null, row.id), React.createElement(\"td\", {\n          style: {\n            paddingLeft: 15 + row.level * 20 + \"px\",\n            width: \"200px\"\n          }\n        }, row.name), _this.props.expandDetails && React.createElement(\"td\", null, row.assigned), _this.props.expandDetails && React.createElement(\"td\", null, row.startDate.toLocaleDateString()), _this.props.expandDetails && React.createElement(\"td\", null, row.endDate.toLocaleDateString()), dateArray.map(function (count, i) {\n          if (i == 0) {\n            return React.createElement(\"td\", {\n              key: i,\n              className: \"gantt-bar-container\",\n              style: {\n                padding: \"0px\"\n              }\n            }, rowLeftX != -1 && rowWidth != -1 ? React.createElement(\"div\", null, React.createElement(\"div\", {\n              style: {\n                width: \"20px\"\n              }\n            }), React.createElement(\"div\", {\n              className: \"progress-track\",\n              style: {\n                left: rowLeftX + \"px\",\n                width: rowWidth + \"px\"\n              }\n            }), React.createElement(\"div\", {\n              className: \"progress-bar\",\n              style: {\n                left: rowLeftX + \"px\",\n                width: rowProgressWidth + \"px\"\n              }\n            })) : null, row.milestones.map(function (milestone, mi) {\n              var milestoneRowLeftX = _this.calculateStartX(milestone.startDate); //Math.ceil((Number(milestone.startDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);\n              var milestoneRowWidth = _this.calculateEndWidth(milestone.startDate, milestone.endDate); //Math.ceil((Number(milestone.endDate) - Number(milestone.startDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);\n              if (milestoneRowLeftX == -1 || rowWidth == -1) {\n                return React.createElement(\"div\", {\n                  key: mi\n                });\n              }\n              return React.createElement(\"div\", {\n                key: mi\n              }, React.createElement(\"div\", {\n                className: \"milestone_bar\",\n                style: {\n                  left: milestoneRowLeftX + \"px\",\n                  width: milestoneRowWidth + \"px\"\n                }\n              }), React.createElement(\"div\", {\n                className: \"milestone_ends start\",\n                style: {\n                  left: milestoneRowLeftX + \"px\"\n                }\n              }), React.createElement(\"div\", {\n                className: \"milestone_ends end\",\n                style: {\n                  left: milestoneRowLeftX + milestoneRowWidth + \"px\"\n                }\n              }));\n            }), currentDateX != -1 ? React.createElement(\"div\", {\n              className: \"currentdate\",\n              style: {\n                left: currentDateX + \"px\"\n              }\n            }) : null);\n          } else {\n            return React.createElement(\"td\", {\n              key: i,\n              style: {}\n            });\n          }\n        }));\n      })));\n    };\n    return _this;\n    // Don't call this.setState() here!\n    //this.state = { counter: 0 };\n  }\n  /**\n   * Renders the the Gantt View element\n   * @returns react node with the table element\n   */\n  GanttViewControl.prototype.render = function () {\n    console.log('children', this.props);\n    return React.createElement(\"div\", {\n      style: {\n        height: \"100%\",\n        width: \"100%\",\n        overflow: \"auto\",\n        position: \"relative\"\n      }\n    }, this.GanttTable());\n  };\n  return GanttViewControl;\n}(React.Component);\nexports.GanttViewControl = GanttViewControl;\n\n//# sourceURL=webpack://pcf_tools_652ac3f36e1e4bca82eb3c1dc44e6fad/./GanttView/GanttViewControl.tsx?");
+
+/***/ }),
+
+/***/ "./GanttView/index.ts":
+/*!****************************!*\
+  !*** ./GanttView/index.ts ***!
+  \****************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+eval("\n\nObject.defineProperty(exports, \"__esModule\", ({\n  value: true\n}));\nexports.GanttView = void 0;\nvar GanttViewControl_1 = __webpack_require__(/*! ./GanttViewControl */ \"./GanttView/GanttViewControl.tsx\");\nvar React = __webpack_require__(/*! react */ \"react\");\nvar GanttView = /** @class */function () {\n  /**\n   * Empty constructor.\n   */\n  function GanttView() {}\n  /**\n   * Used to initialize the control instance. Controls can kick off remote server calls and other initialization actions here.\n   * Data-set values are not initialized here, use updateView.\n   * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to property names defined in the manifest, as well as utility functions.\n   * @param notifyOutputChanged A callback method to alert the framework that the control has new outputs ready to be retrieved asynchronously.\n   * @param state A piece of data that persists in one session for a single user. Can be set at any point in a controls life cycle by calling 'setControlState' in the Mode interface.\n   */\n  GanttView.prototype.init = function (context, notifyOutputChanged, state) {\n    this.notifyOutputChanged = notifyOutputChanged;\n  };\n  /**\n   * Called when any value in the property bag has changed. This includes field values, data-sets, global values such as container height and width, offline status, control metadata values such as label, visible, etc.\n   * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions\n   * @returns ReactElement root react element for the control\n   */\n  GanttView.prototype.updateView = function (context) {\n    var records = context.parameters.records;\n    console.log('columns', records.columns, context.parameters.records.columns.length);\n    var props = {\n      name: 'Hello, World!',\n      ganttStartDate: context.parameters.ganttStartDate.raw || new Date(),\n      ganttEndDate: context.parameters.ganttEndDate.raw || new Date(),\n      currentDate: context.parameters.currentDate.raw || new Date(),\n      expandDetails: context.parameters.expandDetails.raw,\n      data: records.sortedRecordIds.map(function (sortedRowID, i) {\n        var inputRow = records.records[sortedRowID];\n        return {\n          id: inputRow.getFormattedValue('id'),\n          name: inputRow.getFormattedValue('name'),\n          assigned: inputRow.getFormattedValue('assigned'),\n          startDate: new Date(Date.parse(inputRow.getFormattedValue('startDate'))) || new Date(),\n          endDate: new Date(Date.parse(inputRow.getFormattedValue('endDate'))) || new Date(),\n          rowType: inputRow.getFormattedValue('rowType'),\n          progress: parseFloat(inputRow.getFormattedValue('progress')),\n          parentId: inputRow.getFormattedValue('parentId') ? inputRow.getFormattedValue('parentId') : \"\",\n          level: null,\n          milestones: []\n        };\n      })\n    };\n    return React.createElement(GanttViewControl_1.GanttViewControl, props);\n  };\n  /**\n   * It is called by the framework prior to a control receiving new data.\n   * @returns an object based on nomenclature defined in manifest, expecting object[s] for property marked as “bound” or “output”\n   */\n  GanttView.prototype.getOutputs = function () {\n    return {};\n  };\n  /**\n   * Called when the control is to be removed from the DOM tree. Controls should use this call for cleanup.\n   * i.e. cancelling any pending remote calls, removing listeners, etc.\n   */\n  GanttView.prototype.destroy = function () {\n    // Add code to cleanup control if necessary\n  };\n  return GanttView;\n}();\nexports.GanttView = GanttView;\n\n//# sourceURL=webpack://pcf_tools_652ac3f36e1e4bca82eb3c1dc44e6fad/./GanttView/index.ts?");
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = React;
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module can't be inlined because the eval devtool is used.
+/******/ 	var __webpack_exports__ = __webpack_require__("./GanttView/index.ts");
+/******/ 	pcf_tools_652ac3f36e1e4bca82eb3c1dc44e6fad = __webpack_exports__;
+/******/ 	
+/******/ })()
+;
+if (window.ComponentFramework && window.ComponentFramework.registerControl) {
+	ComponentFramework.registerControl('com.thePowerPlatformDuo.GanttView', pcf_tools_652ac3f36e1e4bca82eb3c1dc44e6fad.GanttView);
+} else {
+	var com = com || {};
+	com.thePowerPlatformDuo = com.thePowerPlatformDuo || {};
+	com.thePowerPlatformDuo.GanttView = pcf_tools_652ac3f36e1e4bca82eb3c1dc44e6fad.GanttView;
+	pcf_tools_652ac3f36e1e4bca82eb3c1dc44e6fad = undefined;
+}

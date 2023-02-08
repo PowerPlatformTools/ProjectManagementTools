@@ -1,0 +1,50 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/alexandrebaker/Documents/mvp/workspace/Custom Components/Gantt View Component/Gantt View Component.pcfproj": {}
+  },
+  "projects": {
+    "/Users/alexandrebaker/Documents/mvp/workspace/Custom Components/Gantt View Component/Gantt View Component.pcfproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/alexandrebaker/Documents/mvp/workspace/Custom Components/Gantt View Component/Gantt View Component.pcfproj",
+        "projectName": "Gantt View Component",
+        "projectPath": "/Users/alexandrebaker/Documents/mvp/workspace/Custom Components/Gantt View Component/Gantt View Component.pcfproj",
+        "packagesPath": "/Users/alexandrebaker/.nuget/packages/",
+        "outputPath": "/Users/alexandrebaker/Documents/mvp/workspace/Custom Components/Gantt View Component/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/alexandrebaker/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net462"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net462": {
+            "targetAlias": "net462",
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net462": {
+          "targetAlias": "net462",
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Microsoft.PowerApps.MSBuild.Pcf": {
+              "target": "Package",
+              "version": "[1.*, )"
+            }
+          }
+        }
+      }
+    }
+  }
+}
