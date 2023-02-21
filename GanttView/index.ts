@@ -10,9 +10,9 @@ export class GanttView implements ComponentFramework.ReactControl<IInputs, IOutp
 
     /**
      * Empty constructor.
-     */
+    
     constructor() { }
-
+    */
     /**
      * Used to initialize the control instance. Controls can kick off remote server calls and other initialization actions here.
      * Data-set values are not initialized here, use updateView.

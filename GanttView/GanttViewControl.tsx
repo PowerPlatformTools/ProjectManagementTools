@@ -1,8 +1,5 @@
-import { Position } from '@fluentui/react';
-import { relative } from 'path';
+//import { Position } from '@fluentui/react';
 import * as React from 'react';
-import { createSecureContext } from 'tls';
-//import { Label } from '@fluentui/react';
 
 export interface IGanttViewControlProps {
   name?: string;
@@ -25,18 +22,11 @@ type GanttRow = {
   level: number | null;
   milestones: Array<GanttRow>;
 }
-/*
-type GanttViewControlState = {
-  n: number;
-}
-*/
 
-//type DataRecord = ComponentFramework.PropertyHelper.DataSetApi.EntityRecord
-//type DataColumn = ComponentFramework.PropertyHelper.DataSetApi.Column
-const COLUMN_DAYS:number = 7; 
-const DAY_TIME_RATIO:number = 1/1000/60/60/24;
-const TIME_COLUMN_RATIO:number = DAY_TIME_RATIO/COLUMN_DAYS;
-const COLUMN_WIDTH:number = 30;
+const COLUMN_DAYS = 7; 
+const DAY_TIME_RATIO = 1/1000/60/60/24;
+const TIME_COLUMN_RATIO = DAY_TIME_RATIO/COLUMN_DAYS;
+const COLUMN_WIDTH = 30;
 
 export class GanttViewControl extends React.Component<IGanttViewControlProps> {
   /*
@@ -54,20 +44,20 @@ export class GanttViewControl extends React.Component<IGanttViewControlProps> {
    * @returns an ordered list of gantt rows
    */
   orderGanttRows = () : Array<GanttRow> => {
-    var stack: Array<GanttRow> = [];
-    var result: Array<GanttRow> = [];
+    const stack: Array<GanttRow> = [];
+    const result: Array<GanttRow> = [];
     this.props.data.filter(row => {return row.name != "val" && row.parentId == ""}).reverse().forEach(row => {
       row.level = 0;
       stack.push(row);
     });
     while (stack.length > 0){
-      var currentRow: GanttRow = stack.pop()!;
+      const currentRow: GanttRow = stack.pop() || {id:'', name:'', startDate: null, endDate: null, assigned:null, rowType: null, progress: null, parentId: "", level: null, milestones: []};
       result.push(currentRow);
       this.props.data.filter(row => {return row.name != "val" && row.parentId == currentRow.id}).reverse().forEach(row => {
         if(row.rowType == "milestone"){
           currentRow.milestones.push(row);
         }else{
-          row.level = currentRow.level!+1;
+          row.level = (currentRow.level || 0)+1;
           stack.push(row);
         }
       });
@@ -76,12 +66,12 @@ export class GanttViewControl extends React.Component<IGanttViewControlProps> {
   }
 
   calculateNewGanttEndDate = (): Date =>{
-    var weeks = Math.ceil((Number(this.props.ganttEndDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO);
+    const weeks = Math.ceil((Number(this.props.ganttEndDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO);
     return new Date(Number(this.props.ganttStartDate) + weeks/TIME_COLUMN_RATIO);
   }
 
   calculateStartX = (date: Date | null) =>{
-    var newGanttEndDate:Date = this.calculateNewGanttEndDate();
+    const newGanttEndDate:Date = this.calculateNewGanttEndDate();
     if(!date || date>newGanttEndDate){
       return -1;
     }
@@ -92,7 +82,7 @@ export class GanttViewControl extends React.Component<IGanttViewControlProps> {
   }
 
   calculateEndWidth = (startDate: Date | null, endDate: Date | null ) =>{
-    var newGanttEndDate:Date = this.calculateNewGanttEndDate();
+    const newGanttEndDate:Date = this.calculateNewGanttEndDate();
     console.log('startDate', startDate, newGanttEndDate, !startDate || startDate > newGanttEndDate)
     console.log('endDate', endDate, this.props.ganttStartDate, !endDate || endDate < this.props.ganttStartDate)
     if(!startDate || !endDate || startDate > newGanttEndDate || endDate < this.props.ganttStartDate){
@@ -114,9 +104,9 @@ export class GanttViewControl extends React.Component<IGanttViewControlProps> {
    * @returns teh table elements with the gantt table in it.
    */
   GanttTable = ()=>{
-    var noColumns = Math.ceil((Number(this.props.ganttEndDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO);
-    var dateArray = Array.from(Array(noColumns).keys());
-    var currentDateX = this.props.currentDate<=this.props.ganttStartDate || this.props.currentDate > this.props.ganttEndDate ? -1 : this.calculateStartX(this.props.currentDate);//Math.ceil((Number(this.props.currentDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);
+    const noColumns = Math.ceil((Number(this.props.ganttEndDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO);
+    const dateArray = Array.from(Array(noColumns).keys());
+    const currentDateX = this.props.currentDate<=this.props.ganttStartDate || this.props.currentDate > this.props.ganttEndDate ? -1 : this.calculateStartX(this.props.currentDate);//Math.ceil((Number(this.props.currentDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);
     return (
       <table className="gantt-view-table">
         <thead>
@@ -136,17 +126,17 @@ export class GanttViewControl extends React.Component<IGanttViewControlProps> {
         <tbody>
           {this.orderGanttRows().map((row, i)=>{
             console.log('id', row.id);
-            var rowLeftX = this.calculateStartX(row.startDate); //Math.ceil((Number(row.startDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);
-            var rowWidth = this.calculateEndWidth(row.startDate, row.endDate);//Math.ceil((Number(row.endDate) - Number(row.startDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);
-            var rowProgressWidth = rowWidth * row.progress!/100;
+            const rowLeftX = this.calculateStartX(row.startDate); //Math.ceil((Number(row.startDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);
+            const rowWidth = this.calculateEndWidth(row.startDate, row.endDate);//Math.ceil((Number(row.endDate) - Number(row.startDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);
+            const rowProgressWidth = rowWidth * (row.progress || 0)/100;
             console.log('rowLeftX', row.id, row.startDate, rowLeftX, rowWidth,currentDateX != -1 && rowWidth != -1);
             return (
               <tr key={i}>
                 {this.props.expandDetails && (<td>{row.id}</td>)}
-                <td style={{paddingLeft:15+row.level!*20+"px", width:"200px"}}>{row.name}</td>
+                <td style={{paddingLeft:15+(row.level || 0)*20+"px", width:"200px"}}>{row.name}</td>
                 {this.props.expandDetails && (<td>{row.assigned}</td>)}
-                {this.props.expandDetails && (<td>{row.startDate!.toLocaleDateString()}</td>)}
-                {this.props.expandDetails && (<td>{row.endDate!.toLocaleDateString()}</td>)}
+                {this.props.expandDetails && (<td>{row.startDate ? row.startDate.toLocaleDateString():''}</td>)}
+                {this.props.expandDetails && (<td>{row.endDate ? row.endDate.toLocaleDateString(): ''}</td>)}
 
                 {dateArray.map((count, i)=>{
                   if(i==0){
@@ -159,8 +149,8 @@ export class GanttViewControl extends React.Component<IGanttViewControlProps> {
                               <div className="progress-bar" style={{left: rowLeftX+"px", width: rowProgressWidth+"px"}} />
                             </div> : null }
                         {row.milestones.map((milestone, mi)=>{
-                          var milestoneRowLeftX = this.calculateStartX(milestone.startDate);//Math.ceil((Number(milestone.startDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);
-                          var milestoneRowWidth = this.calculateEndWidth(milestone.startDate, milestone.endDate);//Math.ceil((Number(milestone.endDate) - Number(milestone.startDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);
+                          const milestoneRowLeftX = this.calculateStartX(milestone.startDate);//Math.ceil((Number(milestone.startDate) - Number(this.props.ganttStartDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);
+                          const milestoneRowWidth = this.calculateEndWidth(milestone.startDate, milestone.endDate);//Math.ceil((Number(milestone.endDate) - Number(milestone.startDate))*TIME_COLUMN_RATIO*COLUMN_WIDTH);
                           
                           if(milestoneRowLeftX == -1 || rowWidth == -1){
                             return (<div  key={mi}/>);
