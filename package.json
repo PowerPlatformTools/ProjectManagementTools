@@ -9,7 +9,9 @@
     "lint:fix": "pcf-scripts lint fix",
     "rebuild": "pcf-scripts rebuild",
     "start": "pcf-scripts start",
-    "refreshTypes": "pcf-scripts refreshTypes"
+    "refreshTypes": "pcf-scripts refreshTypes",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@fluentui/react": "8.29.0",
@@ -18,19 +20,33 @@
     "react-dom": "16.8.6"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.12",
     "@microsoft/eslint-plugin-power-apps": "^0.2.6",
+    "@shko.online/componentframework-mock": "^0.1.20",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-interactions": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/react": "^6.5.16",
+    "@storybook/testing-library": "^0.0.13",
     "@types/node": "^18.8.2",
     "@types/powerapps-component-framework": "^1.3.4",
+    "@types/react": "16.8",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
+    "babel-loader": "^8.3.0",
     "eslint": "^8.24.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.1",
     "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-storybook": "^0.6.10",
     "pcf-scripts": "^1",
     "pcf-start": "^1",
-    "react": "^16.8",
-    "typescript": "^4.8.4"
+    "terser-webpack-plugin": "^5.3.6",
+    "typescript": "^4.8.4",
+    "webpack": "^5.75.0"
   }
 }
