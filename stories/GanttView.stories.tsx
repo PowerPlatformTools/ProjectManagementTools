@@ -111,7 +111,7 @@ export const GanttView = Template.bind({}) as StoryObj<StoryArgs>;
 
 GanttView.args = {
   currentDate: new Date(2023, 1, 14),
-  expandDetails: true,
+  expandDetails: false,
   ganttEndDate: new Date(2023, 4, 31),
   ganttStartDate: new Date(2023, 1, 1),
 };

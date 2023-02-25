@@ -12,10 +12,12 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
+    "globals": {
+        "ComponentFramework": true
+    },
     "plugins": [
         "react",
         "@typescript-eslint"
     ],
-    "rules": {
-    }
+    "rules": {}
 }
