@@ -27,7 +27,7 @@ interface StoryArgs {
 }
 
 export default {
-  title: "PCF Component/GanttView",
+  title: "GanttView",
   argTypes: {
     currentDate: {
       description: getFromResource("CurrentDate_Desc_Key"),
@@ -43,6 +43,8 @@ export default {
     },
   },
   parameters: {
+    // More on Story layout: https://storybook.js.org/docs/html/configure/story-layout
+    layout: "fullscreen",
     controls: { expanded: true },
   },
 } as Meta<StoryArgs>;
@@ -63,20 +65,20 @@ export const GanttView = {
         ganttStartDate: DateTimePropertyMock,
         records: DataSetMock,
       });
-  
+
       mockGenerator.context._SetCanvasItems({
         currentDate: dateArg(args.currentDate),
         expandDetails: true,
         ganttEndDate: dateArg(args.ganttEndDate),
         ganttStartDate: dateArg(args.ganttStartDate),
       });
-  
+
       mockGenerator.context._parameters.records._InitItems(testData);
-  
+
       mockGenerator.ExecuteInit();
       return mockGenerator;
     }, []);
-  
+
     useEffect(() => {
       mockGenerator.context._parameters.currentDate._SetValue(
         args.currentDate instanceof Date
@@ -103,9 +105,11 @@ export const GanttView = {
       args.ganttEndDate,
       args.ganttStartDate,
     ]);
-  
-    const [component, setComponent] = useState<ReactElement>(<React.Fragment></React.Fragment>);
-  
+
+    const [component, setComponent] = useState<ReactElement>(
+      <React.Fragment></React.Fragment>
+    );
+
     return component;
   },
   args: {
