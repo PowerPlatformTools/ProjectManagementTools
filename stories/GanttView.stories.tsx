@@ -50,7 +50,7 @@ export default {
 const dateArg = (arg: Date) =>
   arg instanceof Date || !arg ? arg : new Date(arg);
 
-export const LongText = {
+export const GanttView = {
   render: (args: StoryArgs) => {
     const mockGenerator = useMemo(() => {
       const mockGenerator: ComponentFrameworkMockGeneratorReact<

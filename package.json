@@ -1,6 +1,6 @@
 {
-  "name": "pcf-project",
-  "version": "1.0.0",
+  "name": "gantt-view",
+  "version": "0.0.8",
   "description": "Project containing your PowerApps Component Framework (PCF) control.",
   "scripts": {
     "build": "pcf-scripts build",
