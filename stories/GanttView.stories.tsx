@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import type { ReactElement } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { IInputs, IOutputs } from "../GanttView/generated/ManifestTypes";
@@ -49,69 +50,68 @@ export default {
 const dateArg = (arg: Date) =>
   arg instanceof Date || !arg ? arg : new Date(arg);
 
-const Template = (args: StoryArgs) => {
-  const mockGenerator = useMemo(() => {
-    const mockGenerator: ComponentFrameworkMockGeneratorReact<
-      IInputs,
-      IOutputs
-    > = new ComponentFrameworkMockGeneratorReact(Component, {
-      currentDate: DateTimePropertyMock,
-      expandDetails: TwoOptionsPropertyMock,
-      ganttEndDate: DateTimePropertyMock,
-      ganttStartDate: DateTimePropertyMock,
-      records: DataSetMock,
-    });
-
-    mockGenerator.context._SetCanvasItems({
-      currentDate: dateArg(args.currentDate),
-      expandDetails: true,
-      ganttEndDate: dateArg(args.ganttEndDate),
-      ganttStartDate: dateArg(args.ganttStartDate),
-    });
-
-    mockGenerator.context._parameters.records._InitItems(testData);
-
-    mockGenerator.ExecuteInit();
-    return mockGenerator;
-  }, []);
-
-  useEffect(() => {
-    mockGenerator.context._parameters.currentDate._SetValue(
-      args.currentDate instanceof Date
-        ? args.currentDate
-        : new Date(args.currentDate)
-    );
-    mockGenerator.context._parameters.expandDetails._SetValue(
-      args.expandDetails
-    );
-    mockGenerator.context._parameters.ganttEndDate._SetValue(
-      args.ganttEndDate instanceof Date
-        ? args.ganttEndDate
-        : new Date(args.ganttEndDate)
-    );
-    mockGenerator.context._parameters.ganttStartDate._SetValue(
-      args.ganttStartDate instanceof Date
-        ? args.ganttStartDate
-        : new Date(args.ganttStartDate)
-    );
-    setComponent(mockGenerator.ExecuteUpdateView());
-  }, [
-    args.currentDate,
-    args.expandDetails,
-    args.ganttEndDate,
-    args.ganttStartDate,
-  ]);
-
-  const [component, setComponent] = useState<ReactElement>(<></>);
-
-  return component;
-};
-
-export const GanttView = Template.bind({}) as StoryObj<StoryArgs>;
-
-GanttView.args = {
-  currentDate: new Date(2023, 1, 14),
-  expandDetails: false,
-  ganttEndDate: new Date(2023, 4, 31),
-  ganttStartDate: new Date(2023, 1, 1),
-};
+export const LongText = {
+  render: (args: StoryArgs) => {
+    const mockGenerator = useMemo(() => {
+      const mockGenerator: ComponentFrameworkMockGeneratorReact<
+        IInputs,
+        IOutputs
+      > = new ComponentFrameworkMockGeneratorReact(Component, {
+        currentDate: DateTimePropertyMock,
+        expandDetails: TwoOptionsPropertyMock,
+        ganttEndDate: DateTimePropertyMock,
+        ganttStartDate: DateTimePropertyMock,
+        records: DataSetMock,
+      });
+  
+      mockGenerator.context._SetCanvasItems({
+        currentDate: dateArg(args.currentDate),
+        expandDetails: true,
+        ganttEndDate: dateArg(args.ganttEndDate),
+        ganttStartDate: dateArg(args.ganttStartDate),
+      });
+  
+      mockGenerator.context._parameters.records._InitItems(testData);
+  
+      mockGenerator.ExecuteInit();
+      return mockGenerator;
+    }, []);
+  
+    useEffect(() => {
+      mockGenerator.context._parameters.currentDate._SetValue(
+        args.currentDate instanceof Date
+          ? args.currentDate
+          : new Date(args.currentDate)
+      );
+      mockGenerator.context._parameters.expandDetails._SetValue(
+        args.expandDetails
+      );
+      mockGenerator.context._parameters.ganttEndDate._SetValue(
+        args.ganttEndDate instanceof Date
+          ? args.ganttEndDate
+          : new Date(args.ganttEndDate)
+      );
+      mockGenerator.context._parameters.ganttStartDate._SetValue(
+        args.ganttStartDate instanceof Date
+          ? args.ganttStartDate
+          : new Date(args.ganttStartDate)
+      );
+      setComponent(mockGenerator.ExecuteUpdateView());
+    }, [
+      args.currentDate,
+      args.expandDetails,
+      args.ganttEndDate,
+      args.ganttStartDate,
+    ]);
+  
+    const [component, setComponent] = useState<ReactElement>(<React.Fragment></React.Fragment>);
+  
+    return component;
+  },
+  args: {
+    currentDate: new Date(2023, 1, 14),
+    expandDetails: false,
+    ganttEndDate: new Date(2023, 4, 31),
+    ganttStartDate: new Date(2023, 1, 1),
+  },
+} as StoryObj<StoryArgs>;

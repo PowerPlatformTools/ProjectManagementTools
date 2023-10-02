@@ -18,7 +18,7 @@ One of the control parameters allows for the table detail on the right hand side
 
 ## Screenshots
 
- * 📚[Try Component in Storybook](https://PowerPlatformTools.github.io/ProjectManagementTools/)
+ * 📚[Try Component in Storybook](https://main--651b27cd606191e4fd79881f.chromatic.com/)
  
 ## Develop
 1. Clone the repository
