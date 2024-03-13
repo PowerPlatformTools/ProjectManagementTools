@@ -9,7 +9,7 @@
 
   <PropertyGroup>
     <Name>Gantt View Component</Name>
-    <ProjectGuid>58665368-521b-487d-9957-e9cce7c81509</ProjectGuid>
+    <ProjectGuid>753b57dd-9fab-433e-8307-1c4d01740a0c</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
   </PropertyGroup>
 

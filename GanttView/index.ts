@@ -1,11 +1,11 @@
+import * as React from "react";
+
 import { IInputs, IOutputs } from "./generated/ManifestTypes";
 import { GanttViewControl, IGanttViewControlProps } from "./GanttViewControl";
-import * as React from "react";
 
 
 
 export class GanttView implements ComponentFramework.ReactControl<IInputs, IOutputs> {
-    private theComponent: ComponentFramework.ReactControl<IInputs, IOutputs>;
     private notifyOutputChanged: () => void;
 
     /**

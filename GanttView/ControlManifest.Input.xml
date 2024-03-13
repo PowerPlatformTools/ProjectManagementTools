@@ -1,47 +1,44 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
   <control namespace="com.thePowerPlatformDuo" constructor="GanttView" version="0.0.8" display-name-key="GanttView" description-key="GanttView description" control-type="virtual" >
-    <!--external-service-usage node declares whether this 3rd party PCF control is using external service or not, if yes, this control will be considered as premium and please also add the external domain it is using.
-    If it is not using any external service, please set the enabled="false" and DO NOT add any domain below. The "enabled" will be false by default.
-    Example1:
-      <external-service-usage enabled="true">
-        <domain>www.Microsoft.com</domain>
-      </external-service-usage>
-    Example2:
-      <external-service-usage enabled="false">
-      </external-service-usage>
-    -->
-    <external-service-usage enabled="false">
-      <!--UNCOMMENT TO ADD EXTERNAL DOMAINS
-      <domain></domain>
-      <domain></domain>
-      -->
-    </external-service-usage>
-    <!-- dataset node represents a set of entity records on CDS; allow more than one datasets -->
-    <property name="ganttStartDate" display-name-key="GanttStartDate_Key" description-key="GanttStartDate_Desc_Key" of-type="DateAndTime.DateOnly" usage="input" required="true" />
-    <property name="ganttEndDate" display-name-key="GanttEndDate_Key" description-key="GanttEndDate_Desc_Key" of-type="DateAndTime.DateOnly" usage="input" required="true" />
-    <property name="currentDate" display-name-key="CurrentDate_Key" description-key="CurrentDate_Desc_Key" of-type="DateAndTime.DateOnly" usage="input" required="true" />
-    <property name="expandDetails" display-name-key="ExpandDetails_Key" description-key="ExpandDetails_Desc_Key" of-type="TwoOptions" usage="input" required="true" />
-
-    <data-set name="records" display-name-key="Dataset_Display_Key">
-      <!-- 'property-set' node represents a unique, configurable property that each record in the dataset must provide. -->
-      <!-- UNCOMMENT TO ADD PROPERTY-SET NODE-->
-  
-      <property-set name="id" display-name-key="Id_Key" description-key="Id_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
-      <property-set name="name" display-name-key="Name_Key" description-key="Name_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
-      <property-set name="assigned" display-name-key="Assigned_Key" description-key="Assigned_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
+   <data-set name="records" display-name-key="Dataset_Display_Key">  
+      <property-set 
+        name="id" 
+        display-name-key="Id_Key" 
+        description-key="Id_Desc_Key" 
+        of-type="SingleLine.Text" 
+        usage="input" 
+        required="true" />
+      <property-set 
+        name="name" 
+        display-name-key="Name_Key" 
+        description-key="Name_Desc_Key" 
+        of-type="SingleLine.Text" 
+        usage="input" 
+        required="true" />
+      <property-set 
+        name="assigned" 
+        display-name-key="Assigned_Key" 
+        description-key="Assigned_Desc_Key" 
+        of-type="SingleLine.Text" 
+        usage="input" 
+        required="true" />
       <property-set name="startDate" display-name-key="StartDate_Key" description-key="StartDate_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
       <property-set name="endDate" display-name-key="EndDate_Key" description-key="EndDate_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
       <property-set name="rowType" display-name-key="RowType_Key" description-key="RowType_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
       <property-set name="progress" display-name-key="Progress_Key" description-key="Progress_Desc_Key" of-type="Decimal" usage="input" required="true" />
       <property-set name="parentId" display-name-key="ParentID_Key" description-key="ParentID_Desc_Key" of-type="SingleLine.Text" usage="input" required="true" />
     </data-set>
+     <property name="ganttStartDate" display-name-key="GanttStartDate_Key" description-key="GanttStartDate_Desc_Key" of-type="DateAndTime.DateOnly" usage="input" required="true" />
+    <property name="ganttEndDate" display-name-key="GanttEndDate_Key" description-key="GanttEndDate_Desc_Key" of-type="DateAndTime.DateOnly" usage="input" required="true" />
+    <property name="currentDate" display-name-key="CurrentDate_Key" description-key="CurrentDate_Desc_Key" of-type="DateAndTime.DateOnly" usage="input" required="true" />
+    <property name="expandDetails" display-name-key="ExpandDetails_Key" description-key="ExpandDetails_Desc_Key" of-type="TwoOptions" usage="input" required="true" />
     <resources>
       <code path="index.ts" order="1"/>
       <platform-library name="React" version="16.8.6" />
-      <platform-library name="Fluent" version="8.29.0" />
+      <platform-library name="Fluent" version="8.29.0" />   
       <css path="css/GanttView.css" order="1" />
-      <!-- UNCOMMENT TO ADD MORE RESOURCES
+         <!-- UNCOMMENT TO ADD MORE RESOURCES
       <resx path="strings/GanttView.1033.resx" version="1.0.0" />
       -->
     </resources>

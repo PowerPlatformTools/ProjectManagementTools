@@ -1,4 +1,3 @@
-//import { Position } from '@fluentui/react';
 import * as React from 'react';
 
 export interface IGanttViewControlProps {

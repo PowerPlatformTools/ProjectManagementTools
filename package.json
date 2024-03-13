@@ -1,6 +1,6 @@
 {
-  "name": "pcf-project",
-  "version": "1.0.0",
+  "name": "gantt-view",
+  "version": "0.0.8",
   "description": "Project containing your PowerApps Component Framework (PCF) control.",
   "scripts": {
     "build": "pcf-scripts build",
@@ -9,28 +9,52 @@
     "lint:fix": "pcf-scripts lint fix",
     "rebuild": "pcf-scripts rebuild",
     "start": "pcf-scripts start",
-    "refreshTypes": "pcf-scripts refreshTypes"
+    "start:watch": "pcf-scripts start watch",
+    "refreshTypes": "pcf-scripts refreshTypes",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic"
   },
   "dependencies": {
     "@fluentui/react": "8.29.0",
-    "dayjs": "^1.11.7",
+    "@storybook/test": "^8.0.0",
     "react": "16.8.6",
     "react-dom": "16.8.6"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.22.20",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-typescript": "^7.23.0",
     "@microsoft/eslint-plugin-power-apps": "^0.2.6",
+    "@shko.online/componentframework-mock": "^0.1.24",
+    "@storybook/addon-essentials": "^8.0.0",
+    "@storybook/addon-interactions": "^8.0.0",
+    "@storybook/addon-links": "^8.0.0",
+    "@storybook/addon-onboarding": "^8.0.0",
+    "@storybook/addon-webpack5-compiler-babel": "^3.0.3",
+    "@storybook/blocks": "^8.0.0",
+    "@storybook/react": "^8.0.0",
+    "@storybook/react-webpack5": "^8.0.0",
     "@types/node": "^18.8.2",
     "@types/powerapps-component-framework": "^1.3.4",
-    "@typescript-eslint/eslint-plugin": "^5.53.0",
-    "@typescript-eslint/parser": "^5.53.0",
+    "@types/react": "16.8",
+    "@types/react-dom": "16.8",
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
+    "chromatic": "^7.2.0",
     "eslint": "^8.24.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.1",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-storybook": "^0.8.0",
     "pcf-scripts": "^1",
     "pcf-start": "^1",
+    "raw-loader": "^4.0.2",
     "react": "^16.8",
+    "storybook": "^8.0.0",
     "typescript": "^4.8.4"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "gantt-view@0.0.8"
 }

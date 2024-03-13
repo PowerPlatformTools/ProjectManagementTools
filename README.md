@@ -9,7 +9,7 @@ The timeline display items by week. The header shows the number of weeks from th
 We will be developing this site with additional tools. If you have any suggestions please get in touch.
 
 ### Expanding
-One of the control perameters allows for the table detail on the right hand side be expanded and collapsed.
+One of the control parameters allows for the table detail on the right hand side be expanded and collapsed.
 
 ## Technologies
 - NodeJS
@@ -18,21 +18,31 @@ One of the control perameters allows for the table detail on the right hand side
 
 ## Screenshots
 
+ * 📚[Try Component in Storybook](https://main--651b27cd606191e4fd79881f.chromatic.com/)
+ 
 ## Develop
 1. Clone the repository
-2. Make changes
-3. Run build and open in browser
+2. Install dependencies
+
+    npm install
+
+3. Make changes
+4. Run build and open in browser
 
     npm run start
 
 ## Build and Deploy
 1. Clone the repository
-2. Run build
+2. Install dependencies
+
+    npm install
+    
+3. Run build
 
     npm run build
 
-3. Ensure auth profile has been created and selected
-4. publish the component solution to environment
+4. Ensure auth profile has been created and selected
+5. publish the component solution to environment
 
     pac pcf push --publisher-prefix alex
     
