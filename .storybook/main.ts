@@ -11,6 +11,7 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "@storybook/addon-webpack5-compiler-babel"
   ],
   framework: {
     name: "@storybook/react-webpack5",
@@ -19,6 +20,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
+  staticDirs: ['./public'],
   webpackFinal: async (config) => {
     config.resolve = config.resolve || {};
     config.resolve.fallback = config.resolve.fallback || { fs: false };
@@ -32,9 +34,6 @@ const config: StorybookConfig = {
         })
       );
     return config;
-  },
-  features: {
-    storyStoreV7: true,
   },
 };
 export default config;
